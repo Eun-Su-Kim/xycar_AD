@@ -4,15 +4,15 @@ import numpy as np
 
 def yellow_detect(capture):
     ret, frame = capture.read()
-    lower_yellow = np.array([20, 22, 22])
-    upper_yellow = np.array([50, 255, 255])
+    lower_yellow = np.array([23, 50, 30])
+    upper_yellow = np.array([50, 200, 200])
 
     if ret:
         gray = cv2.cvtColor(frame, cv2.COLOR_BGR2HSV)
         mask = cv2.inRange(gray, lower_yellow, upper_yellow)
         roi = mask[360:380, :]
         cv2.imshow('yee1', mask)
-        cv2.imshow('yeeha', roi)
+        # cv2.imshow('yeeha', roi)
         cv2.waitKey(1)
 
 
