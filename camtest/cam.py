@@ -4,8 +4,8 @@ import numpy as np
 
 def yellow_detect(capture):
     ret, frame = capture.read()
-    lower_yellow = np.array([23, 50, 30])
-    upper_yellow = np.array([50, 200, 200])
+    lower_yellow = np.array([22, 50, 30])
+    upper_yellow = np.array([50, 255, 255])
 
     if ret:
         gray = cv2.cvtColor(frame, cv2.COLOR_BGR2HSV)

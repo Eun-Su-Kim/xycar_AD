@@ -32,12 +32,12 @@ class AutoDrive:
         else:
             self.driver.drive(angle + 90, speed + 90)
 
-        print(self.tollgateMode)
-        self.cnt += 1
-        if self.cnt>30:
-            for i in range(5):
-                self.driver.drive(90, 130)
-            exit()
+        print("tollgatemode: ",self.tollgateMode, " tollbar: ",self.tollbar)
+        if self.tollbar is False:
+            self.cnt += 1
+        if self.tollgateMode and self.cnt > 90:
+            self.tollgateMode = False
+            self.cnt = 0
 
     def steer(self, right, left):
         maxSpeed = 60
