@@ -72,13 +72,13 @@ class Detector:
 
     def tollbar_detect(self):
         frame = self.cam_img
-        pixel_cnt_threshold = 0.6 * 640 * 120
+        pixel_cnt_threshold = 0.33 * 200 * 120
 
-        lower_yellow = np.array([20, 22, 22])
-        upper_yellow = np.array([50, 255, 255])
+        lower_yellow = np.array([22, 50, 30])
+        upper_yellow = np.array([50, 250, 250])
         gray = cv2.cvtColor(frame, cv2.COLOR_BGR2HSV)
         mask = cv2.inRange(gray, lower_yellow, upper_yellow)
-        roi = mask[290:350, :]
+        roi = mask[180:300, 220:420]
 
         # cv2.imshow('yellow_all', mask)
         # cv2.imshow('yellow', roi)
@@ -91,15 +91,15 @@ class Detector:
 
     def sign_detect(self):
         frame = self.cam_img
-        pixel_cnt_threshold = 0.5 * 100 * 110
+        pixel_cnt_threshold = 0.3 * 100 * 110
         lower_blue = np.array([100, 70, 55])
         upper_blue = np.array([216, 255, 255])
         gray = cv2.cvtColor(frame, cv2.COLOR_BGR2HSV)
         mask = cv2.inRange(gray, lower_blue, upper_blue)
         roi = mask[70:180, 400:500]
 
-        cv2.imshow('blue_all', mask)
-        cv2.imshow('blue', roi)
+        # cv2.imshow('blue_all', mask)
+        # cv2.imshow('blue', roi)
 
         if cv2.countNonZero(roi) > pixel_cnt_threshold:
             return True
