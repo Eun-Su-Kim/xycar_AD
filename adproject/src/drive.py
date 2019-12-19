@@ -12,7 +12,7 @@ class AutoDrive:
         self.detector = Detector('/usb_cam/image_raw')
         self.driver = MotorDriver('/xycar_motor_msg')
         self.cnt = 0
-        self.hipass = True
+        self.hipass = False
         self.tollgateMode = False
         self.tollbar = False
 
@@ -47,7 +47,7 @@ class AutoDrive:
         if self.tollgateMode & self.hipass:
             mid -= 90
         elif self.tollgateMode is True and self.hipass is False:
-            mid += 90
+            mid += 75
 
         if mid < 150:
             angle = -(max((150 - mid), 1) * maxAngle / 150)
